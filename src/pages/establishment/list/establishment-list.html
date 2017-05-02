@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Lugares Dois por Um</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item-sliding *ngFor="let estab of establishments;let i = index;" [navPush]="detailPage" [navParams]="estab">
+      <ion-item>
+        <ion-avatar item-left>
+          <img src="img/slimer.png">
+        </ion-avatar>
+        <h2>{{ estab.name }}</h2>
+        <h3> {{ estab.description }}</h3>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="primary">
+        <ion-icon name="map"></ion-icon>
+        Mapa
+      </button>
+        <button ion-button color="secondary">
+        <ion-icon name="open"></ion-icon>
+        Detalhes
+      </button>
+        <button ion-button color="primary-contrast" (click)="onCall(estab)">
+        <ion-icon name="call"></ion-icon>
+        Ligar
+      </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

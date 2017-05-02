@@ -1,5 +1,7 @@
 <ion-header>
   <ion-navbar>
+    <app-menu-button> </app-menu-button>
+
     <ion-title text-center>Gerenciar</ion-title>
   </ion-navbar>
 </ion-header>
@@ -7,8 +9,18 @@
 
 <ion-content>
   <ion-list inset>
-    <button ion-item (click)="goTo()"> Meus Cupons</button>
-    <button ion-item (click)="goTo()"> Lista de Cupons</button>
-    <button ion-item (click)="goTo()"> Etc </button>
+    <button ion-item (click)="goTo(establishmentPage)">
+      <ion-icon name="pricetags" item-left ></ion-icon>
+      Lugares Dois por Um
+      <!--<button (click)="goTo()"> Lugares Dois por Um</button>-->
+    </button>
+    <!--
+    <button ion-item (click)="goTo(establishmentPage)">
+      <ion-icon name="pricetags" item-left ></ion-icon>
+      Lugares Dois por Um
+    </button>
+    <button ion-item (click)="goTo()"> Meus dois por um</button>
+
+    <button ion-item (click)="goTo()"> Etc </button>-->
   </ion-list>
 </ion-content>

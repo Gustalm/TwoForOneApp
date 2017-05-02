@@ -9,6 +9,10 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from "../pages/tabs/tabs";
 import { MapPage } from "../pages/map/map";
 import { ManagerPage } from "../pages/manager/manager";
+import { MenuButtonComponent } from "../menu/menu-button.component";
+import { EstablishmentService } from "../services/establishment.service";
+import { EstablishmentListPage } from "../pages/establishment/list/establishment-list";
+import { EstablishmentDetailPage } from "../pages/establishment/detail/establishment-detail";
 
 @NgModule({
   declarations: [
@@ -16,11 +20,17 @@ import { ManagerPage } from "../pages/manager/manager";
     HomePage,
     TabsPage,
     MapPage,
-    ManagerPage
+    ManagerPage,
+    MenuButtonComponent,
+    EstablishmentListPage,
+    EstablishmentDetailPage 
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp,{
+      backButtonText: 'Voltar',
+      backButtonIcon: 'arrow-round-back'
+    }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -28,12 +38,15 @@ import { ManagerPage } from "../pages/manager/manager";
     HomePage,
     TabsPage,
     MapPage,
-    ManagerPage
+    ManagerPage,
+    EstablishmentListPage,
+    EstablishmentDetailPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    EstablishmentService
   ]
 })
 export class AppModule {}
