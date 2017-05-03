@@ -7,8 +7,8 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item-sliding *ngFor="let estab of establishments;let i = index;" [navPush]="detailPage" [navParams]="estab">
-      <ion-item>
+    <ion-item-sliding *ngFor="let estab of establishments;let i = index;">
+      <ion-item [navPush]="detailPage" [navParams]="estab"> 
         <ion-avatar item-left>
           <img src="img/slimer.png">
         </ion-avatar>
