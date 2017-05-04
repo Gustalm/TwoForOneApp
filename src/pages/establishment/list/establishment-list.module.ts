@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { EstablishmentListPage } from './establishment/list/establishment-list';
+import { EstablishmentListPage } from './establishment-list';
 
 @NgModule({
   declarations: [

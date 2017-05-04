@@ -13,6 +13,7 @@ import { MenuButtonComponent } from "../menu/menu-button.component";
 import { EstablishmentService } from "../services/establishment.service";
 import { EstablishmentListPage } from "../pages/establishment/list/establishment-list";
 import { EstablishmentDetailPage } from "../pages/establishment/detail/establishment-detail";
+import { GoogleMaps } from "@ionic-native/google-maps";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { EstablishmentDetailPage } from "../pages/establishment/detail/establish
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp,{
-      backButtonText: 'Voltar',
+      backButtonText: '',
       backButtonIcon: 'arrow-round-back'
     }),
   ],
@@ -46,7 +47,8 @@ import { EstablishmentDetailPage } from "../pages/establishment/detail/establish
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    EstablishmentService
+    EstablishmentService,
+    GoogleMaps
   ]
 })
 export class AppModule {}
