@@ -13,6 +13,7 @@ import { MenuButtonComponent } from "../menu/menu-button.component";
 import { EstablishmentService } from "../services/establishment.service";
 import { EstablishmentListPage } from "../pages/establishment/list/establishment-list";
 import { EstablishmentDetailPage } from "../pages/establishment/detail/establishment-detail";
+
 import { GoogleMaps } from "@ionic-native/google-maps";
 
 @NgModule({
@@ -48,7 +49,8 @@ import { GoogleMaps } from "@ionic-native/google-maps";
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     EstablishmentService,
-    GoogleMaps
+    GoogleMaps,
+
   ]
 })
 export class AppModule { }

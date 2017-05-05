@@ -9,19 +9,22 @@ import {
   MarkerOptions,
   Marker
 } from '@ionic-native/google-maps';
+import { Geolocation } from '@ionic-native/geolocation';
 
 declare var google;
 
 @IonicPage()
 @Component({
   selector: 'page-map',
-  templateUrl: 'map.html'
+  templateUrl: 'map.html',
+  providers: [Geolocation]
 })
 export class MapPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private googleMaps: GoogleMaps) {
+    private googleMaps: GoogleMaps,
+    public geolocation: Geolocation) {
   }
 
   ngAfterViewInit() {
@@ -57,11 +60,14 @@ export class MapPage {
     //   console.log('Map is ready!')
     //   console.log(param);
     // });
-    // this.geolocation.getCurrentPosition((resp) => {
-    //   console.log(resp);
-    // }, (error) => {
-    //   console.log('Error getting location', error);
-    // })
+
+    this.geolocation.getCurrentPosition().then((resp) => {
+      // resp.coords.latitude
+      // resp.coords.longitude
+      console.log(resp);
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
   }
 
   loadMapJavascript() {
