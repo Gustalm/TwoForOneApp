@@ -24,11 +24,11 @@ import { GoogleMaps } from "@ionic-native/google-maps";
     ManagerPage,
     MenuButtonComponent,
     EstablishmentListPage,
-    EstablishmentDetailPage 
+    EstablishmentDetailPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp,{
+    IonicModule.forRoot(MyApp, {
       backButtonText: '',
       backButtonIcon: 'arrow-round-back'
     }),
@@ -46,9 +46,9 @@ import { GoogleMaps } from "@ionic-native/google-maps";
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     EstablishmentService,
     GoogleMaps
   ]
 })
-export class AppModule {}
+export class AppModule { }
