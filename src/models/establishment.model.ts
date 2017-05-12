@@ -27,7 +27,8 @@ export class Establishment{
         public facebookRate: number,
         public pageNumber: number,
         public description: string,
-        public image: string) {
+        public image: string,
+        public idCategory: number) {
 
     }
 }

@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {
   GoogleMaps,
@@ -10,7 +10,9 @@ import {
   Marker
 } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
-
+import { EstablishmentService } from "../../services/establishment.service";
+import { Establishment } from "../../models/establishment.model";
+//todo refactor
 declare var google;
 
 @IonicPage()
@@ -19,21 +21,28 @@ declare var google;
   templateUrl: 'map.html',
   providers: [Geolocation]
 })
-export class MapPage {
-
+export class MapPage implements OnInit {
+  @ViewChild('mapElement') mapElement: ElementRef;
+  establishments: Establishment[] = [];
+  map: any;
+  //todo refactor
+  markers: any[] = [];
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private googleMaps: GoogleMaps,
-    public geolocation: Geolocation) {
+    public geolocation: Geolocation,
+    private establishmentsService: EstablishmentService) {
+
+    this.establishments = this.establishmentsService.getEstablishments();
   }
 
   ngAfterViewInit() {
+  }
+
+  ngOnInit(): void {
     this.loadMap();
     this.loadMapJavascript();
   }
-
-  @ViewChild('mapElement') mapElement: ElementRef;
-  map: any;
 
   loadMap() {
     // let element: HTMLElement = document.getElementById('map');
@@ -61,24 +70,45 @@ export class MapPage {
     //   console.log(param);
     // });
 
-    this.geolocation.getCurrentPosition().then((resp) => {
-      // resp.coords.latitude
-      // resp.coords.longitude
-      console.log(resp);
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
+
   }
 
   loadMapJavascript() {
-    let latLng = new google.maps.LatLng(-34.9290, 138.6010);
+    this.geolocation.getCurrentPosition().then((position) => {
+      //TODO: refactor this to a service
+      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
-    let mapOptions = {
-      center: latLng,
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
+      let mapOptions = {
+        center: latLng,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
 
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+
+      var iconBase = "/assets/images/map/"
+      var icons = {
+        parking: {
+          icon: iconBase + 'restaurant.png'
+        },
+        library: {
+          icon: iconBase + 'culture.png'
+        },
+        info: {
+          icon: iconBase + 'hanggliding.png'
+        }
+      };
+
+      let localvar = this.establishments;
+
+      // localvar.forEach(function (establishment) {
+      //   let marker = new google.maps.Marker({
+      //     position: new google.maps.LatLng(establishment.latitude, establishment.longitude),
+      //     icon: icons['info'].icon,
+      //     map: this.map
+      //   });
+      // });
+    });
   }
+
 }
