@@ -6,7 +6,7 @@ export class Establishment{
     // url: string,
     // latitude: number,
     // longitude: number,
-    // phone: number,
+    // phone: number,a
     // googleRate: number,
     // tripAdvisorRate:number,
     // facebookRate: number,
